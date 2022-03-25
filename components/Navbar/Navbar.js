@@ -1,45 +1,45 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
-import mapPic from "../../public/VectorMap.svg";
-import profilePic from "../../public/VectorProfile.svg";
-import fishingDaysPic from "../../public/VectorFishingdays.svg";
+import mapIcon from "../../public/VectorMap.svg";
+import profileIcon from "../../public/VectorProfile.svg";
+import fishingDaysIcon from "../../public/VectorFishingdays.svg";
 
 const Navbar = () => {
   return (
     <>
       <Ul>
-        <Li>
+        <li>
           <Link href="/meetings">
             <>
               <Image
-                src={fishingDaysPic}
+                src={fishingDaysIcon}
                 width="55"
                 height="47"
                 alt="Bild in svg"
               />
             </>
           </Link>
-        </Li>
-        <Li>
+        </li>
+        <li>
           <Link href="/">
             <>
-              <Image src={mapPic} width="55" height="47" alt="Bild in svg" />
+              <Image src={mapIcon} width="55" height="47" alt="Bild in svg" />
             </>
           </Link>
-        </Li>
-        <Li>
+        </li>
+        <li>
           <Link href="/profile">
             <>
               <Image
-                src={profilePic}
+                src={profileIcon}
                 width="55"
                 height="47"
                 alt="Bild in svg"
               />
             </>
           </Link>
-        </Li>
+        </li>
       </Ul>
     </>
   );
@@ -48,6 +48,9 @@ const Navbar = () => {
 const Ul = styled.ul`
   box-sizing: border-box;
   background-color: black;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-inline-start: 0px;
   display: flex;
   position: fixed;
   width: 390px;
@@ -58,10 +61,6 @@ const Ul = styled.ul`
   align-items: center;
   list-style-type: none;
   text-decoration: none;
-`;
-
-const Li = styled.li`
-  color: white;
 `;
 
 export default Navbar;
