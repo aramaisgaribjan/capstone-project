@@ -23,6 +23,7 @@ const Container = styled.div`
   width: 390px;
   height: 844px;
   background-color: #404040;
+  border-radius: 10px;
 `;
 
 const H1 = styled.h1`
