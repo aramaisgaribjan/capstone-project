@@ -1,8 +1,12 @@
 import Head from "next/head";
-import styled from "styled-components";
-import Navbar from "../components/Navbar/Navbar";
+import Navbar from "../components/Navbar";
+import Container from "../components/Container";
+import { FishingdayForm } from "../components/FishingdayForm";
+import { useCreateFishingday } from "../utils/hooks/useCreateFishingday";
+import FishingdayList from "../components/FishingdayList";
 
 export default function Home() {
+  const { handleCreateFishingday, error } = useCreateFishingday();
   return (
     <div>
       <Head>
@@ -10,22 +14,19 @@ export default function Home() {
       </Head>
 
       <main>
+        <h1>Fishingdays</h1>
         <Container>
-          <Navbar />
-          <H1>This is the map</H1>
+          <div>Create a new Fishingday</div>
+          <FishingdayForm
+            onSubmitFishingday={handleCreateFishingday}
+            submitText={"Create fishingday"}
+            error={error}
+            id="create"
+          />
+          <FishingdayList />
         </Container>
+        <Navbar />
       </main>
     </div>
   );
 }
-
-const Container = styled.div`
-  width: 390px;
-  height: 844px;
-  background-color: #404040;
-  border-radius: 10px;
-`;
-
-const H1 = styled.h1`
-  color: white;
-`;

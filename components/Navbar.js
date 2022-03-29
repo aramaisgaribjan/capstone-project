@@ -1,9 +1,9 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
-import mapIcon from "../../public/VectorMap.svg";
-import profileIcon from "../../public/VectorProfile.svg";
-import fishingDaysIcon from "../../public/VectorFishingdays.svg";
+import mapIcon from "../public/VectorMap.svg";
+import profileIcon from "../public/VectorProfile.svg";
+import fishingDaysIcon from "../public/VectorFishingdays.svg";
 
 const Navbar = () => {
   return (
@@ -11,33 +11,33 @@ const Navbar = () => {
       <Ul>
         <li>
           <Link href="/meetings">
-            <>
+            <a>
               <Image
                 src={fishingDaysIcon}
                 width="55"
                 height="47"
                 alt="Bild in svg"
               />
-            </>
+            </a>
           </Link>
         </li>
         <li>
           <Link href="/">
-            <>
+            <a>
               <Image src={mapIcon} width="55" height="47" alt="Bild in svg" />
-            </>
+            </a>
           </Link>
         </li>
         <li>
           <Link href="/profile">
-            <>
+            <a>
               <Image
                 src={profileIcon}
                 width="55"
                 height="47"
                 alt="Bild in svg"
               />
-            </>
+            </a>
           </Link>
         </li>
       </Ul>
@@ -55,7 +55,7 @@ const Ul = styled.ul`
   position: fixed;
   width: 390px;
   height: 93px;
-  top: 755px;
+  margin: 0;
   justify-content: space-around;
   flex-direction: row;
   align-items: center;

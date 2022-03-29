@@ -1,0 +1,19 @@
+GET http://localhost:3000/api/fishingdays
+###
+GET http://localhost:3000/api/fishingdays/6231e0fd6db84695c87f76f7
+###
+POST http://localhost:3000/api/fishingdays
+content-type: application/json
+
+{
+  "text": "this is the fishingday text"
+}
+###
+DELETE http://localhost:3000/api/fishingdays/6231ee38aa719d1e879f1137
+###
+PATCH http://localhost:3000/api/fishingdays/6231e0fd6db84695c87f76f7
+content-type: application/json
+
+{
+  "text": "jlk"
+}

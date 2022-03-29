@@ -1,7 +1,14 @@
+import Container from "../components/Container";
+import Navbar from "../components/Navbar";
+
 export default function Profile() {
+  console.log("Test");
   return (
-    <>
-      <h1>Here is my profile</h1>
-    </>
+    <main>
+      <Container>
+        <h1>Moin</h1>
+      </Container>
+      <Navbar />
+    </main>
   );
 }
