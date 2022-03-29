@@ -1,7 +1,11 @@
+import Container from "../components/Container";
+import Navbar from "../components/Navbar";
+
 export default function Meeting() {
   return (
-    <>
-      <h1>Here are some meetings</h1>
-    </>
+    <main>
+      <Container>Angeltage</Container>
+      <Navbar />
+    </main>
   );
 }
