@@ -15,6 +15,7 @@ export function FishingdayForm({ onSubmitFishingday, submitText, error, id }) {
   return (
     <Form onSubmit={handleSubmit}>
       <div>
+        <h3>Create a new Fishingday</h3>
         <label htmlFor={`text-${id}`}>Zielfisch</label>
         <input type="text" required id={`text-${id}`} name="fish" />
         <label htmlFor={`text-${id}`}>Gewässer</label>
@@ -41,7 +42,7 @@ const Form = styled.form`
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    margin: auto;
+    margin: 20px auto;
   }
 
   input[type="text"] {
