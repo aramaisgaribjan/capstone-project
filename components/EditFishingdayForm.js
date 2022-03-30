@@ -9,7 +9,7 @@ export function EditFishingdayForm({
   waters,
 }) {
   async function handleSubmit(event) {
-    const response = await fetch(`/api/fishingdays/${fishingday._id}`);
+    //const response = await fetch(`/api/fishingdays/${fishingday._id}`);
 
     event.preventDefault();
     onSubmitFishingday(
@@ -30,7 +30,7 @@ export function EditFishingdayForm({
           required
           id={`text-${id}`}
           name="fish"
-          value={fish}
+          defaultValue={fish}
         />
         <label htmlFor={`text-${id}`}>Gewässer</label>
         <input
@@ -38,7 +38,7 @@ export function EditFishingdayForm({
           required
           id={`text-${id}`}
           name="waters"
-          value={waters}
+          defaultValue={waters}
         />
         {error ? (
           <p>

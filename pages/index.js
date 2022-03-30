@@ -6,12 +6,9 @@ import { FishingdayForm } from "../components/FishingdayForm";
 import { useCreateFishingday } from "../utils/hooks/useCreateFishingday";
 import styled from "styled-components";
 
-const fetcher = (resource, init) =>
-  fetch(resource, init).then((res) => res.json());
-
 export default function Home() {
   const { handleCreateFishingday, error } = useCreateFishingday();
-  const fishingdays = useSWR("/api/fishingdays", fetcher);
+  const fishingdays = useSWR("/api/fishingdays");
 
   return (
     <div>
@@ -27,13 +24,13 @@ export default function Home() {
             id="create"
           />
           {fishingdays.data ? (
-            <JokeList>
+            <FishingdayList>
               {fishingdays.data.map((fishingday) => (
                 <li key={fishingday._id}>
                   <Fishingday fishingday={fishingday} />
                 </li>
               ))}
-            </JokeList>
+            </FishingdayList>
           ) : (
             "Empty"
           )}
@@ -42,7 +39,7 @@ export default function Home() {
     </div>
   );
 }
-const JokeList = styled.ul`
+const FishingdayList = styled.ul`
   list-style: none;
   width: 300px;
   display: flex;

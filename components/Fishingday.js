@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { EditFishingdayForm } from "./EditFishingdayForm";
 import styled from "styled-components";
+import useSWR, { useSWRConfig } from "swr";
 
-export function Fishingday({ fishingday, fishingdays }) {
+export function Fishingday({ fishingday }) {
   const [isEditMode, setIsEditMode] = useState(false);
   const [error, setError] = useState();
 
-  async function handleEditFishingday(fishingdayData, fishingdays) {
+  const fishingdays = useSWR("/api/fishingdays");
+
+  async function handleEditFishingday(fishingdayData) {
     const response = await fetch(`/api/fishingdays/${fishingday._id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
@@ -14,7 +17,7 @@ export function Fishingday({ fishingday, fishingdays }) {
     });
     const updatedFishingday = await response.json();
     if (response.ok) {
-      //fishingdays.mutate();
+      fishingdays.mutate();
       setError();
       setIsEditMode(false);
     } else {
