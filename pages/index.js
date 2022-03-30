@@ -1,32 +1,56 @@
 import Head from "next/head";
-import Navbar from "../components/Navbar";
+import { Fishingday } from "../components/Fishingday";
 import Container from "../components/Container";
+import useSWR from "swr";
 import { FishingdayForm } from "../components/FishingdayForm";
 import { useCreateFishingday } from "../utils/hooks/useCreateFishingday";
-import FishingdayList from "../components/FishingdayList";
+import styled from "styled-components";
+
+const fetcher = (resource, init) =>
+  fetch(resource, init).then((res) => res.json());
 
 export default function Home() {
   const { handleCreateFishingday, error } = useCreateFishingday();
+  const fishingdays = useSWR("/api/fishingdays", fetcher);
+
   return (
     <div>
       <Head>
         <title>Capstone-Project</title>
       </Head>
-
       <main>
-        <h1>Fishingdays</h1>
         <Container>
-          <div>Create a new Fishingday</div>
           <FishingdayForm
             onSubmitFishingday={handleCreateFishingday}
             submitText={"Create fishingday"}
             error={error}
             id="create"
           />
-          <FishingdayList />
+          {fishingdays.data ? (
+            <JokeList>
+              {fishingdays.data.map((fishingday) => (
+                <li key={fishingday._id}>
+                  <Fishingday fishingday={fishingday} />
+                </li>
+              ))}
+            </JokeList>
+          ) : (
+            "Empty"
+          )}
         </Container>
-        <Navbar />
       </main>
     </div>
   );
 }
+const JokeList = styled.ul`
+  list-style: none;
+  width: 300px;
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+
+  > li {
+    flex: 1 0 30ch;
+  }
+`;

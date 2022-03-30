@@ -1,30 +1,25 @@
 import { useState } from "react";
 import { FishingdayForm } from "./FishingdayForm";
 import styled from "styled-components";
-import useSWR from "swr";
 
-export function Fishingday({ fishingday }) {
-  const fishingdays = useSWR("/api/fishingday");
-
+export function Fishingday({ fishingday, fishingdays }) {
   const [isEditMode, setIsEditMode] = useState(false);
   const [error, setError] = useState();
 
-  async function handleEditFishingday(newText) {
-    setIsUpdating(true);
-    const response = await fetch(`/api/fishingday/${fishingday._id}`, {
+  async function handleEditFishingday(fishingdayData, fishingdays) {
+    const response = await fetch(`/api/fishingdays/${fishingday._id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ text: newText }),
+      body: JSON.stringify(fishingdayData),
     });
     const updatedFishingday = await response.json();
     if (response.ok) {
-      fishingdays.mutate();
+      //fishingdays.mutate();
       setError();
       setIsEditMode(false);
     } else {
       setError(updatedFishingday.error ?? "Something went wrong");
     }
-    setIsUpdating(false);
   }
 
   function handleEditButtonClick() {
@@ -32,21 +27,19 @@ export function Fishingday({ fishingday }) {
   }
 
   async function handleDeleteButtonClick() {
-    setIsDeleting(true);
     const response = await fetch(`/api/fishingdays/${fishingday._id}`, {
       method: "DELETE",
     });
     if (response.ok) {
-      fishingdays.mutate();
+      //fishingdays.mutate();
     }
-    setIsDeleting(false);
   }
 
   if (isEditMode) {
     return (
       <Container>
         <FishingdayForm
-          defaultValue={fishingday.text}
+          defaultValue={fishingday.body}
           onSubmitFishingday={handleEditFishingday}
           submitText={"Update fishingday"}
           error={error}
@@ -57,7 +50,8 @@ export function Fishingday({ fishingday }) {
   } else {
     return (
       <Container>
-        <span>{fishingday.text}</span>
+        <span>{"Zielfisch: " + fishingday.fish}</span>
+        <span>{"Gewässer: " + fishingday.waters}</span>
         <Buttons>
           <button onClick={handleEditButtonClick}>Edit</button>
           <button onClick={handleDeleteButtonClick}>Delete</button>
@@ -67,16 +61,20 @@ export function Fishingday({ fishingday }) {
   }
 }
 
-export const Container = styled.article`
+export const Container = styled.div`
   padding: 1rem 1rem 0.75rem 1rem;
-  background-color: rgb(246 246 246);
+  background-color: white;
   box-shadow: 0 0 10px rgb(0 0 0 / 6%), 0 5px 20px rgb(0 0 0 / 5%);
   height: 100%;
+  border-radius: 10px;
   display: flex;
   gap: 1rem;
 
   > form {
     height: 100%;
+  }
+  > span {
+    color: black;
   }
 `;
 
@@ -84,7 +82,6 @@ const Buttons = styled.div`
   margin-top: auto;
   display: flex;
   gap: 0.5rem;
-
   > button {
     flex: 1 0 auto;
   }

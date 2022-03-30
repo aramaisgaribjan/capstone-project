@@ -1,19 +1,21 @@
 GET http://localhost:3000/api/fishingdays
 ###
-GET http://localhost:3000/api/fishingdays/6231e0fd6db84695c87f76f7
+GET http://localhost:3000/api/fishingdays/6242cce8eaa8b2a66bc44cb5
 ###
 POST http://localhost:3000/api/fishingdays
 content-type: application/json
 
 {
-  "text": "this is the fishingday text"
+  "fish": "Brasse",
+  "waters": "Alster"
 }
 ###
-DELETE http://localhost:3000/api/fishingdays/6231ee38aa719d1e879f1137
+DELETE http://localhost:3000/api/fishingdays/6242cce8eaa8b2a66bc44cb5
 ###
-PATCH http://localhost:3000/api/fishingdays/6231e0fd6db84695c87f76f7
+PATCH http://localhost:3000/api/fishingdays/6242cce8eaa8b2a66bc44cb5
 content-type: application/json
 
 {
-  "text": "jlk"
+  "fish": "Hecht",
+  "waters": "Alster"
 }
