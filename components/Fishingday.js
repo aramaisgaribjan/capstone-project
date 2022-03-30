@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FishingdayForm } from "./FishingdayForm";
+import { EditFishingdayForm } from "./EditFishingdayForm";
 import styled from "styled-components";
 
 export function Fishingday({ fishingday, fishingdays }) {
@@ -37,15 +37,14 @@ export function Fishingday({ fishingday, fishingdays }) {
 
   if (isEditMode) {
     return (
-      <Container>
-        <FishingdayForm
-          defaultValue={fishingday.body}
-          onSubmitFishingday={handleEditFishingday}
-          submitText={"Update fishingday"}
-          error={error}
-          id={fishingday._id}
-        />
-      </Container>
+      <EditFishingdayForm
+        onSubmitFishingday={handleEditFishingday}
+        submitText={"Update"}
+        error={error}
+        id={fishingday._id}
+        fish={fishingday.fish}
+        waters={fishingday.waters}
+      />
     );
   } else {
     return (
@@ -69,6 +68,7 @@ export const Container = styled.div`
   border-radius: 10px;
   display: flex;
   gap: 1rem;
+  width: 291px;
 
   > form {
     height: 100%;
