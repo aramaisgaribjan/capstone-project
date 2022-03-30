@@ -46,11 +46,13 @@ const JokeList = styled.ul`
   list-style: none;
   width: 300px;
   display: flex;
-  gap: 3rem;
+  gap: 2rem;
   flex-wrap: wrap;
-  margin-bottom: 20px;
-
+  margin: 30px auto 0;
+  padding-inline-start: 0;
+  flex-direction: row;
+  overflow-y: auto;
   > li {
-    flex: 1 0 30ch;
+    margin: auto;
   }
 `;
