@@ -10,6 +10,9 @@ const Container = styled.div`
   background-color: #404040;
   border-radius: 10px 10px 0 0;
   color: white;
+  overflow-y: auto;
+  position: relative;
+  padding-bottom: 30px;
 `;
 
 export default Container;

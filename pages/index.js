@@ -48,7 +48,6 @@ const FishingdayList = styled.ul`
   margin: 30px auto 0;
   padding-inline-start: 0;
   flex-direction: row;
-  overflow-y: auto;
   > li {
     margin: auto;
     display: flex;
