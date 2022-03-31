@@ -5,8 +5,6 @@ export function EditFishingdayForm({
   submitText,
   error,
   id,
-  fish,
-  waters,
 }) {
   async function handleSubmit(event) {
     //const response = await fetch(`/api/fishingdays/${fishingday._id}`);
@@ -16,6 +14,7 @@ export function EditFishingdayForm({
       {
         fish: event.target.elements.fish.value,
         waters: event.target.elements.waters.value,
+        dateTime: event.target.elements.dateTime.value,
       },
       event.target
     );
@@ -24,21 +23,16 @@ export function EditFishingdayForm({
   return (
     <Form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor={`text-${id}`}>Zielfisch</label>
+        <label htmlFor={`fish-${id}`}>Zielfisch</label>
+        <input type="text" required id={`fish-${id}`} name="fish" />
+        <label htmlFor={`waters-${id}`}>Gewässer</label>
+        <input type="text" required id={`waters-${id}`} name="waters" />
+        <label htmlFor={`dateTime-${id}`}>Datum & Uhrzeit</label>
         <input
-          type="text"
+          type="datetime-local"
           required
-          id={`text-${id}`}
-          name="fish"
-          defaultValue={fish}
-        />
-        <label htmlFor={`text-${id}`}>Gewässer</label>
-        <input
-          type="text"
-          required
-          id={`text-${id}`}
-          name="waters"
-          defaultValue={waters}
+          id={`date-${id}`}
+          name="dateTime"
         />
         {error ? (
           <p>

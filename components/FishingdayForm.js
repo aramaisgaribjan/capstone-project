@@ -7,6 +7,7 @@ export function FishingdayForm({ onSubmitFishingday, submitText, error, id }) {
       {
         fish: event.target.elements.fish.value,
         waters: event.target.elements.waters.value,
+        dateTime: event.target.elements.dateTime.value,
       },
       event.target
     );
@@ -16,10 +17,17 @@ export function FishingdayForm({ onSubmitFishingday, submitText, error, id }) {
     <Form onSubmit={handleSubmit}>
       <div>
         <h3>Create a new Fishingday</h3>
-        <label htmlFor={`text-${id}`}>Zielfisch</label>
-        <input type="text" required id={`text-${id}`} name="fish" />
-        <label htmlFor={`text-${id}`}>Gewässer</label>
-        <input type="text" required id={`text-${id}`} name="waters" />
+        <label htmlFor={`fish-${id}`}>Zielfisch</label>
+        <input type="text" required id={`fish-${id}`} name="fish" />
+        <label htmlFor={`waters-${id}`}>Gewässer</label>
+        <input type="text" required id={`waters-${id}`} name="waters" />
+        <label htmlFor={`dateTime-${id}`}>Datum & Uhrzeit</label>
+        <input
+          type="datetime-local"
+          required
+          id={`date-${id}`}
+          name="dateTime"
+        />
         {error ? (
           <p>
             <strong>Error:</strong> {error}
