@@ -4,13 +4,16 @@ import Image from "next/image";
 import mapIcon from "../public/VectorMap.svg";
 import profileIcon from "../public/VectorProfile.svg";
 import fishingDaysIcon from "../public/VectorFishingdays.svg";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
+  const router = useRouter();
+
   return (
     <>
       <Ul>
-        <li>
-          <Link href="/meetings">
+        <StyledLink className={router.pathname == "/meetings" ? "active" : ""}>
+          <Link href="/meetings" passHref>
             <a>
               <Image
                 src={fishingDaysIcon}
@@ -20,15 +23,15 @@ const Navbar = () => {
               />
             </a>
           </Link>
-        </li>
-        <li>
+        </StyledLink>
+        <StyledLink className={router.pathname == "/" ? "active" : ""}>
           <Link href="/">
             <a>
               <Image src={mapIcon} width="55" height="47" alt="Bild in svg" />
             </a>
           </Link>
-        </li>
-        <li>
+        </StyledLink>
+        <StyledLink className={router.pathname == "/profile" ? "active" : ""}>
           <Link href="/profile">
             <a>
               <Image
@@ -39,7 +42,7 @@ const Navbar = () => {
               />
             </a>
           </Link>
-        </li>
+        </StyledLink>
       </Ul>
     </>
   );
@@ -61,6 +64,16 @@ const Ul = styled.ul`
   align-items: center;
   list-style-type: none;
   text-decoration: none;
+`;
+
+const StyledLink = styled.li`
+  opacity: 50%;
+  &.active {
+    opacity: 100%;
+  }
+  :hover {
+    opacity: 100%;
+  }
 `;
 
 export default Navbar;
