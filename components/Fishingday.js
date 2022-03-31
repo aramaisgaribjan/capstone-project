@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { EditFishingdayForm } from "./EditFishingdayForm";
 import styled from "styled-components";
-import useSWR, { useSWRConfig } from "swr";
+import useSWR from "swr";
 
 export function Fishingday({ fishingday }) {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -34,7 +34,7 @@ export function Fishingday({ fishingday }) {
       method: "DELETE",
     });
     if (response.ok) {
-      //fishingdays.mutate();
+      fishingdays.mutate();
     }
   }
 
@@ -47,6 +47,7 @@ export function Fishingday({ fishingday }) {
         id={fishingday._id}
         fish={fishingday.fish}
         waters={fishingday.waters}
+        dateTime={fishingday.dateTime}
       />
     );
   } else {
@@ -54,6 +55,7 @@ export function Fishingday({ fishingday }) {
       <Container>
         <span>{"Zielfisch: " + fishingday.fish}</span>
         <span>{"Gewässer: " + fishingday.waters}</span>
+        <span>{"Datum: " + fishingday.dateTime}</span>
         <Buttons>
           <button onClick={handleEditButtonClick}>Edit</button>
           <button onClick={handleDeleteButtonClick}>Delete</button>
@@ -71,7 +73,8 @@ export const Container = styled.div`
   border-radius: 10px;
   display: flex;
   gap: 1rem;
-  width: 291px;
+  width: 300px;
+  flex-wrap: wrap;
 
   > form {
     height: 100%;

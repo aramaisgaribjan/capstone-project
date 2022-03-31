@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "dotenv": "^16.0.0",
     "mongoose": "^6.2.9",
     "next": "12.1.0",
     "react": "17.0.2",

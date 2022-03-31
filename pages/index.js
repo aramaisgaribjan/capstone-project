@@ -41,7 +41,7 @@ export default function Home() {
 }
 const FishingdayList = styled.ul`
   list-style: none;
-  width: 300px;
+  width: 390px;
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
@@ -51,5 +51,9 @@ const FishingdayList = styled.ul`
   overflow-y: auto;
   > li {
     margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: max-content;
   }
 `;
