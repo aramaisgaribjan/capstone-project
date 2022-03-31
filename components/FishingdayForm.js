@@ -36,7 +36,6 @@ const Form = styled.form`
   gap: 1rem;
   flex-direction: column;
   color: white;
-  margin-top: 10px;
 
   > div {
     display: flex;

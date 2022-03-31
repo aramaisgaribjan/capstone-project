@@ -1,12 +1,17 @@
 import Container from "../components/Container";
+import styled from "styled-components";
 
 export default function Profile() {
   console.log("Test");
   return (
     <main>
       <Container>
-        <h1>Guten Morgen</h1>
+        <Text>Moin</Text>
       </Container>
     </main>
   );
 }
+
+const Text = styled.p`
+  margin-top: 0;
+`;
