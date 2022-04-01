@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export function EditFishingdayForm({
   onSubmitFishingday,
+  onCancelEdit,
   submitText,
   error,
   id,
@@ -53,8 +54,11 @@ export function EditFishingdayForm({
             <strong>Error:</strong> {error}
           </p>
         ) : null}
+        <Button>
+          <input type="submit" value={submitText} />
+          <button onClick={onCancelEdit}>Abbrechen</button>
+        </Button>
       </div>
-      <input type="submit" value={submitText} />
     </Form>
   );
 }
@@ -83,4 +87,15 @@ const Form = styled.form`
     border: 2px solid rgb(190 190 190);
     border-radius: 3px;
   }
+  & button {
+    margin: auto;
+    width: 100px;
+    padding: 0.5rem;
+    border: 2px solid rgb(190 190 190);
+    border-radius: 3px;
+  }
+`;
+
+const Button = styled.div`
+  display: flex;
 `;
