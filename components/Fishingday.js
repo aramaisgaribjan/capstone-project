@@ -42,6 +42,17 @@ export function Fishingday({ fishingday }) {
     }
   }
 
+  let dtFormat = new Intl.DateTimeFormat("de-DE", {
+    day: "numeric",
+    month: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: false,
+  });
+
+  let date = new Date(fishingday.dateTime);
+
   if (isEditMode) {
     return (
       <EditFishingdayForm
@@ -52,7 +63,7 @@ export function Fishingday({ fishingday }) {
         id={fishingday._id}
         fish={fishingday.fish}
         waters={fishingday.waters}
-        dateTime={fishingday.dateTime}
+        dateTime={dtFormat.format(date)}
       />
     );
   } else {
@@ -60,7 +71,7 @@ export function Fishingday({ fishingday }) {
       <Container>
         <span>{"Zielfisch: " + fishingday.fish}</span>
         <span>{"Gewässer: " + fishingday.waters}</span>
-        <span>{"Datum: " + fishingday.dateTime}</span>
+        <span>{"Datum: " + dtFormat.format(date) + " Uhr"}</span>
         <Buttons>
           <button onClick={handleEditButtonClick}>Bearbeiten</button>
           <button onClick={handleDeleteButtonClick}>Löschen</button>
