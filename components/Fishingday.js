@@ -29,6 +29,10 @@ export function Fishingday({ fishingday }) {
     setIsEditMode(true);
   }
 
+  function handleCancelEditFishingday() {
+    setIsEditMode(false);
+  }
+
   async function handleDeleteButtonClick() {
     const response = await fetch(`/api/fishingdays/${fishingday._id}`, {
       method: "DELETE",
@@ -42,7 +46,8 @@ export function Fishingday({ fishingday }) {
     return (
       <EditFishingdayForm
         onSubmitFishingday={handleEditFishingday}
-        submitText={"Update"}
+        onCancelEdit={handleCancelEditFishingday}
+        submitText={"Aktualisieren"}
         error={error}
         id={fishingday._id}
         fish={fishingday.fish}
@@ -57,8 +62,8 @@ export function Fishingday({ fishingday }) {
         <span>{"Gewässer: " + fishingday.waters}</span>
         <span>{"Datum: " + fishingday.dateTime}</span>
         <Buttons>
-          <button onClick={handleEditButtonClick}>Edit</button>
-          <button onClick={handleDeleteButtonClick}>Delete</button>
+          <button onClick={handleEditButtonClick}>Bearbeiten</button>
+          <button onClick={handleDeleteButtonClick}>Löschen</button>
         </Buttons>
       </Container>
     );

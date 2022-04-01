@@ -16,7 +16,7 @@ export function FishingdayForm({ onSubmitFishingday, submitText, error, id }) {
   return (
     <Form onSubmit={handleSubmit}>
       <div>
-        <h3>Create a new Fishingday</h3>
+        <h3>Erstelle Angeltag</h3>
         <label htmlFor={`fish-${id}`}>Zielfisch</label>
         <input type="text" required id={`fish-${id}`} name="fish" />
         <label htmlFor={`waters-${id}`}>Gewässer</label>
@@ -28,13 +28,14 @@ export function FishingdayForm({ onSubmitFishingday, submitText, error, id }) {
           id={`date-${id}`}
           name="dateTime"
         />
+
         {error ? (
           <p>
             <strong>Error:</strong> {error}
           </p>
         ) : null}
+        <input type="submit" value={submitText} />
       </div>
-      <input type="submit" value={submitText} />
     </Form>
   );
 }
@@ -50,6 +51,12 @@ const Form = styled.form`
     flex-direction: column;
     gap: 0.5rem;
     margin: 20px auto;
+    background-color: #909090;
+    padding: 1rem;
+    border-radius: 5px;
+    > h3 {
+      margin-top: 0;
+    }
   }
 
   input[type="text"] {
@@ -60,10 +67,12 @@ const Form = styled.form`
   }
 
   input[type="submit"] {
-    margin: auto;
-    width: 300px;
-    padding: 0.5rem;
-    border: 2px solid rgb(190 190 190);
-    border-radius: 3px;
+    width: max-content;
+    padding: 0.2rem 1.5rem 0.2rem 1.5rem;
+    border: 2px solid #00aa44;
+    border-radius: 5px;
+    background-color: #00aa44;
+    color: white;
+    font-size: 18px;
   }
 `;

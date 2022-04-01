@@ -19,7 +19,7 @@ export default function Home() {
         <Container>
           <FishingdayForm
             onSubmitFishingday={handleCreateFishingday}
-            submitText={"Create fishingday"}
+            submitText={"Erstellen"}
             error={error}
             id="create"
           />
