@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 const TitleBar = () => {
   const router = useRouter();
   const path = router.pathname;
-  const pathTitle = "";
+  let pathTitle = "";
   function title(path) {
     if (path == "/") {
       pathTitle = "MAP";
