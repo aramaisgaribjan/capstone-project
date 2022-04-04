@@ -12,8 +12,10 @@ const Navbar = () => {
   return (
     <>
       <Ul>
-        <StyledLink className={router.pathname == "/meetings" ? "active" : ""}>
-          <Link href="/meetings" passHref>
+        <StyledLink
+          className={router.pathname == "/fishingdays" ? "active" : ""}
+        >
+          <Link href="/fishingdays" passHref>
             <a>
               <Image
                 src={fishingDaysIcon}
