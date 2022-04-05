@@ -5,6 +5,7 @@ import useSWR from "swr";
 import { FishingdayForm } from "../components/FishingdayForm";
 import { useCreateFishingday } from "../utils/hooks/useCreateFishingday";
 import styled from "styled-components";
+import { getSession } from "next-auth/react";
 
 export default function Home() {
   const { handleCreateFishingday, error } = useCreateFishingday();
@@ -56,3 +57,21 @@ const FishingdayList = styled.ul`
     height: max-content;
   }
 `;
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/signin/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      session,
+    },
+  };
+}
