@@ -28,14 +28,7 @@ export default function SignIn({ providers }) {
       </ImageContainer>
       <p>FishingBuddies</p>
       {Object.values(providers).map((provider, index) => (
-        <Button
-          key={provider.name}
-          onClick={() =>
-            signIn(provider.id, {
-              callbackUrl: "http://localhost:3000/signin/",
-            })
-          }
-        >
+        <Button key={provider.name} onClick={() => signIn(provider.id)}>
           Log in with {provider.name}
         </Button>
       ))}
