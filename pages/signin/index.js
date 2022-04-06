@@ -43,7 +43,7 @@ export default function SignIn({ providers }) {
   );
 }
 const ImageContainer = styled.div`
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 100%;
 `;
