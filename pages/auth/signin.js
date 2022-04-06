@@ -27,11 +27,13 @@ export default function SignIn({ providers }) {
         />
       </ImageContainer>
       <p>FishingBuddies</p>
-      {Object.values(providers).map((provider) => (
-        <Button key={provider.name} onClick={() => signIn(provider.id)}>
-          Log in with {provider.name}
-        </Button>
-      ))}
+      <Buttons>
+        {Object.values(providers).map((provider) => (
+          <Button key={provider.name} onClick={() => signIn(provider.id)}>
+            Log in with {provider.name}
+          </Button>
+        ))}
+      </Buttons>
     </Main>
   );
 }
@@ -70,13 +72,23 @@ const Button = styled.button`
   justify-content: space-around;
   align-items: center;
   position: relative;
-  top: 662px;
+  top: 632px;
   left: 55px;
   font-size: 22px;
   width: 277px;
   height: 41px;
+  cursor: pointer;
   color: #00ff85;
   background-color: #595959;
   border: 1px solid #595959;
   border-radius: 10px;
+  :hover {
+    background-color: green;
+    color: white;
+  }
+`;
+const Buttons = styled.button`
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
 `;

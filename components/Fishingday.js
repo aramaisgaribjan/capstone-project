@@ -2,10 +2,12 @@ import { useState } from "react";
 import { EditFishingdayForm } from "./EditFishingdayForm";
 import styled from "styled-components";
 import useSWR from "swr";
+import { useSession } from "next-auth/react";
 
 export function Fishingday({ fishingday }) {
   const [isEditMode, setIsEditMode] = useState(false);
   const [error, setError] = useState();
+  const { data: session } = useSession();
 
   const fishingdays = useSWR("/api/fishingdays");
 
@@ -72,6 +74,8 @@ export function Fishingday({ fishingday }) {
         <span>{"Zielfisch: " + fishingday.fish}</span>
         <span>{"Gewässer: " + fishingday.waters}</span>
         <span>{"Datum: " + dtFormat.format(date) + " Uhr"}</span>
+        <span>{"User: " + session.user.name}</span>
+
         <Buttons>
           <button onClick={handleEditButtonClick}>Bearbeiten</button>
           <button onClick={handleDeleteButtonClick}>Löschen</button>
