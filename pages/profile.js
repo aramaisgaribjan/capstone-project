@@ -1,15 +1,17 @@
 import Container from "../components/Container";
 import styled from "styled-components";
 import { getSession, signOut } from "next-auth/react";
-import backgroundImg from "../public/SVG/iwwa_lightbulb.svg";
+import Navbar from "../components/Navbar";
+import TitleBar from "../components/TitleBar";
 
 export default function Profile() {
   return (
     <main>
+      <TitleBar />
       <Container>
         <Button onClick={() => signOut()}>Sign out</Button>
-        <Background />
       </Container>
+      <Navbar />
     </main>
   );
 }
@@ -22,12 +24,6 @@ const Button = styled.button`
   background-color: green;
   border: 2px solid green;
   border-radius: 5px;
-`;
-const Background = styled.div`
-  background-image: url(${backgroundImg});
-  border: 1px solid #000;
-  width: 350px;
-  height: 508px;
 `;
 
 export async function getServerSideProps(context) {

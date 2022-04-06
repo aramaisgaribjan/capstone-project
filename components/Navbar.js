@@ -1,9 +1,9 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
-import mapIcon from "../public/VectorMap.svg";
-import profileIcon from "../public/VectorProfile.svg";
-import fishingDaysIcon from "../public/VectorFishingdays.svg";
+import mapIcon from "../public/SVG/VectorMap.svg";
+import profileIcon from "../public/SVG/VectorProfile.svg";
+import fishingDaysIcon from "../public/SVG/VectorFishingdays.svg";
 import { useRouter } from "next/router";
 
 const Navbar = () => {
