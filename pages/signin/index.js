@@ -43,7 +43,7 @@ export default function SignIn({ providers }) {
   );
 }
 const ImageContainer = styled.div`
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
 `;
@@ -78,7 +78,7 @@ const Button = styled.button`
   position: relative;
   top: 662px;
   left: 55px;
-  font-size: 24px;
+  font-size: 22px;
   width: 277px;
   height: 41px;
   color: #00ff85;
