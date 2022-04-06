@@ -36,7 +36,7 @@ export default function SignIn({ providers }) {
             })
           }
         >
-          Sign in with {provider.name}
+          Log in with {provider.name}
         </Button>
       ))}
     </Main>
