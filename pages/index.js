@@ -6,6 +6,8 @@ import { FishingdayForm } from "../components/FishingdayForm";
 import { useCreateFishingday } from "../utils/hooks/useCreateFishingday";
 import styled from "styled-components";
 import { getSession } from "next-auth/react";
+import Navbar from "../components/Navbar";
+import TitleBar from "../components/TitleBar";
 
 export default function Home() {
   const { handleCreateFishingday, error } = useCreateFishingday();
@@ -17,6 +19,7 @@ export default function Home() {
         <title>Capstone-Project</title>
       </Head>
       <main>
+        <TitleBar />
         <Container>
           <FishingdayForm
             onSubmitFishingday={handleCreateFishingday}
@@ -36,6 +39,7 @@ export default function Home() {
             "Empty"
           )}
         </Container>
+        <Navbar />
       </main>
     </div>
   );
