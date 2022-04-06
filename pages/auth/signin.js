@@ -27,7 +27,7 @@ export default function SignIn({ providers }) {
         />
       </ImageContainer>
       <p>FishingBuddies</p>
-      {Object.values(providers).map((provider, index) => (
+      {Object.values(providers).map((provider) => (
         <Button key={provider.name} onClick={() => signIn(provider.id)}>
           Log in with {provider.name}
         </Button>
@@ -44,6 +44,7 @@ const ImageContainer = styled.div`
 // This is the recommended way for Next.js 9.3 or newer
 export async function getServerSideProps(context) {
   const providers = await getProviders();
+  const session = await getSession();
   return {
     props: { providers },
   };
