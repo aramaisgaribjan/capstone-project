@@ -3,6 +3,7 @@ import { EditFishingdayForm } from "./EditFishingdayForm";
 import styled from "styled-components";
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
+import Button from "./Button";
 
 export function Fishingday({ fishingday }) {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -37,9 +38,23 @@ export function Fishingday({ fishingday }) {
     if (response.ok) {
       fishingdays.mutate();
       setError();
-      setIsEditMode(false);
     } else {
       setError(updatedFishingday.error ?? "Something went wrong");
+    }
+  }
+
+  async function handleLeaveFishingday() {
+    const response = await fetch(`/api/fishingdays/${fishingday._id}`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ $pull: { participants: session.user?.id } }),
+    });
+    const deletedFishingday = await response.json();
+    if (response.ok) {
+      fishingdays.mutate();
+      setError();
+    } else {
+      setError(deletedFishingday.error ?? "Something went wrong");
     }
   }
 
@@ -70,7 +85,6 @@ export function Fishingday({ fishingday }) {
   });
 
   let date = new Date(fishingday.dateTime);
-  console.log(fishingday.dateTime);
 
   if (isEditMode) {
     return (
@@ -105,7 +119,6 @@ export function Fishingday({ fishingday }) {
             ))}
           </span>
         </Content>
-
         {fishingday.userId?._id === session.user.id ? (
           <Buttons>
             <button onClick={handleEditButtonClick}>Bearbeiten</button>
@@ -113,7 +126,13 @@ export function Fishingday({ fishingday }) {
           </Buttons>
         ) : (
           <Buttons>
-            <button onClick={handleJoinFishingday}>Teilnehmen</button>
+            {fishingday.participants.some(
+              (participant) => participant._id === session.user.id
+            ) ? (
+              <Button onClick={handleLeaveFishingday}>Austragen</Button>
+            ) : (
+              <Button onClick={handleJoinFishingday}>Teilnehmen</Button>
+            )}
           </Buttons>
         )}
       </Container>
