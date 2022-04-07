@@ -1,5 +1,6 @@
 import Fishingday from "../../../schema/Fishingday";
 import { connectDb } from "../../../utils/db";
+import { getSession } from "next-auth/react";
 
 export default async function handler(request, response) {
   const { fishingdayId } = request.query;
@@ -7,39 +8,47 @@ export default async function handler(request, response) {
   try {
     connectDb();
 
+    const session = await getSession({ req: request });
+
     switch (request.method) {
       case "PATCH":
-        // patch the correct fishingday
-        const updatedFishingday = await Fishingday.findByIdAndUpdate(
-          fishingdayId,
-          {
-            $set: request.body,
-          },
-          { returnDocument: "after", runValidators: true }
-        );
+        if (session) {
+          const updatedFishingday = await Fishingday.findByIdAndUpdate(
+            fishingdayId,
 
-        if (updatedFishingday) {
-          response.status(200).json({
-            success: true,
-            data: updatedFishingday,
-          });
+            request.body,
+
+            { returnDocument: "after", runValidators: true }
+          );
+
+          if (updatedFishingday) {
+            response.status(200).json({
+              success: true,
+              data: updatedFishingday,
+            });
+          } else {
+            response.status(404).json({ error: "Not found" });
+          }
         } else {
-          response.status(404).json({ error: "Not found" });
+          response.status(401).json({ error: "Not authenticated" });
         }
-
         break;
 
       case "DELETE":
-        const deletedFishingday = await Fishingday.findByIdAndDelete(
-          fishingdayId
-        );
-        if (deletedFishingday) {
-          response.status(200).json({
-            success: true,
-            data: deletedFishingday,
-          });
+        if (session) {
+          const deletedFishingday = await Fishingday.findByIdAndDelete(
+            fishingdayId
+          );
+          if (deletedFishingday) {
+            response.status(200).json({
+              success: true,
+              data: deletedFishingday,
+            });
+          } else {
+            response.status(404).json({ error: "Not found" });
+          }
         } else {
-          response.status(404).json({ error: "Not found" });
+          response.status(401).json({ error: "Not authenticated" });
         }
         break;
 

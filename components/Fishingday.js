@@ -27,6 +27,22 @@ export function Fishingday({ fishingday }) {
     }
   }
 
+  async function handleJoinFishingday() {
+    const response = await fetch(`/api/fishingdays/${fishingday._id}`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ $push: { participants: session.user?.id } }),
+    });
+    const updatedFishingday = await response.json();
+    if (response.ok) {
+      fishingdays.mutate();
+      setError();
+      setIsEditMode(false);
+    } else {
+      setError(updatedFishingday.error ?? "Something went wrong");
+    }
+  }
+
   function handleEditButtonClick() {
     setIsEditMode(true);
   }
@@ -54,6 +70,7 @@ export function Fishingday({ fishingday }) {
   });
 
   let date = new Date(fishingday.dateTime);
+  console.log(fishingday.dateTime);
 
   if (isEditMode) {
     return (
@@ -65,21 +82,40 @@ export function Fishingday({ fishingday }) {
         id={fishingday._id}
         fish={fishingday.fish}
         waters={fishingday.waters}
-        dateTime={dtFormat.format(date)}
+        dateTime={fishingday.dateTime.substring(
+          0,
+          fishingday.dateTime.length - 1
+        )}
       />
     );
   } else {
     return (
       <Container>
-        <span>{"Zielfisch: " + fishingday.fish}</span>
-        <span>{"Gewässer: " + fishingday.waters}</span>
-        <span>{"Datum: " + dtFormat.format(date) + " Uhr"}</span>
-        <span>{"User: " + session.user.name}</span>
+        <Content>
+          <span>{"Zielfisch: " + fishingday.fish}</span>
+          <span>{"Gewässer: " + fishingday.waters}</span>
+          <span>{"Datum: " + dtFormat.format(date) + " Uhr"}</span>
+          <span>{"Ersteller: " + fishingday.userId?.nickname}</span>
+          <span>
+            Teilnehmer: <li>{fishingday.userId?.nickname}</li>
+            {fishingday.participants.map((participant) => (
+              <li key={fishingday._id}>
+                <Teilnehmer>{participant.nickname}</Teilnehmer>
+              </li>
+            ))}
+          </span>
+        </Content>
 
-        <Buttons>
-          <button onClick={handleEditButtonClick}>Bearbeiten</button>
-          <button onClick={handleDeleteButtonClick}>Löschen</button>
-        </Buttons>
+        {fishingday.userId?._id === session.user.id ? (
+          <Buttons>
+            <button onClick={handleEditButtonClick}>Bearbeiten</button>
+            <button onClick={handleDeleteButtonClick}>Löschen</button>
+          </Buttons>
+        ) : (
+          <Buttons>
+            <button onClick={handleJoinFishingday}>Teilnehmen</button>
+          </Buttons>
+        )}
       </Container>
     );
   }
@@ -104,6 +140,13 @@ export const Container = styled.div`
   }
 `;
 
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: black;
+  gap: 10px;
+`;
+
 const Buttons = styled.div`
   margin-top: auto;
   display: flex;
@@ -111,4 +154,8 @@ const Buttons = styled.div`
   > button {
     flex: 1 0 auto;
   }
+`;
+
+const Teilnehmer = styled.ul`
+  padding: 0;
 `;

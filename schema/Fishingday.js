@@ -6,6 +6,7 @@ const fishingdaySchema = new Schema({
   waters: { type: String, required: true },
   dateTime: { type: Date },
   userId: { type: Schema.Types.ObjectId, ref: "User" },
+  participants: [{ type: Schema.Types.ObjectId, ref: "User" }],
 });
 
 export default model("Fishingday", fishingdaySchema, "fishingdays", {

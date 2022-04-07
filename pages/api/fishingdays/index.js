@@ -1,21 +1,37 @@
 import Fishingday from "../../../schema/Fishingday";
 import { connectDb } from "../../../utils/db";
+import { getSession } from "next-auth/react";
 
 export default async function handler(request, response) {
   try {
     connectDb();
 
+    const session = await getSession({ req: request });
+
     switch (request.method) {
       case "GET":
-        const fishingdays = await Fishingday.find();
-        response.status(200).json(fishingdays);
+        if (session) {
+          const fishingdays = await Fishingday.find()
+            .populate("userId")
+            .populate("participants");
+          response.status(200).json(fishingdays);
+        } else {
+          response.status(401).json({ error: "Not authenticated" });
+        }
         break;
 
       case "POST":
-        const createdFishingdays = await Fishingday.create({
-          ...request.body,
-        });
-        response.status(200).json({ success: true, data: createdFishingdays });
+        if (session) {
+          const createdFishingdays = await Fishingday.create({
+            ...request.body,
+            userId: session.user.id,
+          });
+          response
+            .status(200)
+            .json({ success: true, data: createdFishingdays });
+        } else {
+          response.status(401).json({ error: "Not authenticated" });
+        }
         break;
 
       default:
