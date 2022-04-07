@@ -29,7 +29,14 @@ export default function SignIn({ providers }) {
       <p>FishingBuddies</p>
       <Buttons>
         {Object.values(providers).map((provider) => (
-          <Button key={provider.name} onClick={() => signIn(provider.id)}>
+          <Button
+            key={provider.name}
+            onClick={() =>
+              signIn(provider.id, {
+                callbackUrl: "http://localhost:3000/auth/createNickname",
+              })
+            }
+          >
             Log in with {provider.name}
           </Button>
         ))}
