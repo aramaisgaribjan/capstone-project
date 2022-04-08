@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { getSession, useSession } from "next-auth/react";
 import { useEffect } from "react";
-import Link from "next/link";
 import backgroundImg from "/public/LoginBackground.png";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -10,11 +9,11 @@ export default function CreateNickname({ id }) {
   const { data: session } = useSession();
   const router = useRouter();
 
-  async function assignNickname(nickname) {
+  async function assignNickname(nickname, city, birthday) {
     const response = await fetch(`/api/assignNickname/${session.user.id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ nickname }),
+      body: JSON.stringify({ nickname, city, birthday }),
     });
     if (response.ok) {
       router.push("/");
@@ -23,7 +22,11 @@ export default function CreateNickname({ id }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    assignNickname(event.target.elements.nickname.value);
+    assignNickname(
+      event.target.elements.nickname.value,
+      event.target.elements.city.value,
+      event.target.elements.birthday.value
+    );
   }
 
   useEffect(() => {
@@ -53,6 +56,24 @@ export default function CreateNickname({ id }) {
           id={`nickname-${id}`}
           name="nickname"
           placeholder="Nickname"
+        />
+        <label htmlFor={`city-${id}`}>In welcher Stadt wohnst du?</label>
+        <input
+          type="text"
+          required
+          id={`city-${id}`}
+          name="city"
+          placeholder="Stadt"
+        />
+        <label htmlFor={`birthday-${id}`}>Wann hast du Geburtstag?</label>
+        <input
+          type="date"
+          required
+          id={`birthday-${id}`}
+          name="birthday"
+          placeholder="tt.mm.jjjj"
+          min="1920-01-01"
+          max="2015-12-31"
         />
         <input type="submit" value="Erstellen" />
       </Form>

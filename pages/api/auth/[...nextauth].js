@@ -20,7 +20,14 @@ export default NextAuth({
     async session({ session, user }) {
       return {
         ...session,
-        user: { ...session.user, id: user.id, nickname: user.nickname },
+        user: {
+          ...session.user,
+          id: user.id,
+          nickname: user.nickname,
+          city: user.city,
+          birthday: user.birthday,
+          image: user.image,
+        },
       };
     },
   },
