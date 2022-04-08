@@ -36,9 +36,11 @@ const Ul = styled.div`
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   > div {
+    @import url("https://fonts.googleapis.com/css2?family=Bona+Nova&display=swap");
     color: white;
     text-align: center;
     font-size: 35px;
+    font-family: "Bona Nova", serif;
   }
 `;
 

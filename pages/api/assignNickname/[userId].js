@@ -15,7 +15,12 @@ export default async function handler(request, response) {
         const createNickname = await User.findByIdAndUpdate(
           userId,
           {
-            $set: { nickname: request.body.nickname },
+            $set: {
+              nickname: request.body.nickname,
+              city: request.body.city,
+              birthday: request.body.birthday,
+              image: request.body.image,
+            },
           },
           { returnDocument: "after", runValidators: true }
         ).where({ userId: session.user.id });

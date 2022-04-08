@@ -5,6 +5,8 @@ const userSchema = new Schema({
   nickname: { type: String },
   image: { type: String },
   email: { type: String },
+  city: { type: String },
+  birthday: { type: Date },
 });
 
 export default model("User", userSchema, "users", { overwriteModels: true });
