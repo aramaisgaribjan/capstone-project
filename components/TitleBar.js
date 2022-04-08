@@ -28,6 +28,9 @@ const TitleBar = () => {
 };
 
 const Ul = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
   background-color: black;
   position: relative;
@@ -38,7 +41,6 @@ const Ul = styled.div`
   > div {
     @import url("https://fonts.googleapis.com/css2?family=Bona+Nova&display=swap");
     color: white;
-    text-align: center;
     font-size: 35px;
     font-family: "Bona Nova", serif;
   }

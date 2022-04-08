@@ -129,9 +129,16 @@ export function Fishingday({ fishingday }) {
             {fishingday.participants.some(
               (participant) => participant._id === session.user.id
             ) ? (
-              <Button onClick={handleLeaveFishingday}>Austragen</Button>
+              <Button
+                onClick={handleLeaveFishingday}
+                backgroundColor={"#8a2900"}
+              >
+                Austragen
+              </Button>
             ) : (
-              <Button onClick={handleJoinFishingday}>Teilnehmen</Button>
+              <Button onClick={handleJoinFishingday} backgroundColor={"green"}>
+                Teilnehmen
+              </Button>
             )}
           </Buttons>
         )}
