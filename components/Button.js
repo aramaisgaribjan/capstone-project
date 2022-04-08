@@ -1,15 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 
-function Button({ children, onClick }) {
-  return <StyledButton onClick={onClick}>{children}</StyledButton>;
+function Button({ children, onClick, backgroundColor }) {
+  return (
+    <StyledButton backgroundColor={backgroundColor} onClick={onClick}>
+      {children}
+    </StyledButton>
+  );
 }
 const StyledButton = styled.button`
-  background-color: green;
+  background-color: ${({ backgroundColor }) => backgroundColor};
   border: 0;
   border-radius: 8px;
   color: white;
   width: 100px;
   height: 30px;
+  font-size: 16px;
 `;
 export default Button;
