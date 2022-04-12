@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { Fishingday } from "../components/Fishingday";
 import Container from "../components/Container";
 import { FishingdayForm } from "../components/FishingdayForm";
 import { useCreateFishingday } from "../utils/hooks/useCreateFishingday";

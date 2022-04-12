@@ -1,15 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
-import Container from "../components/Container";
-import styled from "styled-components";
+import Image from "next/image";
 import { getSession, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import styled from "styled-components";
+import Container from "../components/Container";
 import Navbar from "../components/Navbar";
 import TitleBar from "../components/TitleBar";
-import { useSession } from "next-auth/react";
-import Image from "next/image";
+import AboutMe from "../components/AboutMe";
+import useSWR from "swr";
 
 import logoutIcon from "../public/SVG/LogoutVector.svg";
 
-export default function Profile() {
+export default function Profile(user) {
   const { data: session } = useSession();
 
   function getAge(dateString) {
@@ -25,33 +27,42 @@ export default function Profile() {
 
   const age = getAge(session.user.birthday);
 
+  const aboutMeText = useSWR(`/api/assignNickname/`);
+
   return (
     <main>
       <TitleBar />
       <Container>
-        <PersonSection>
-          <AllInfo>
-            <ProfilePic>
-              <img alt="profilepic" src={session.user.image} />
-            </ProfilePic>
-            <Info>
-              <Nickname>{session.user.nickname}</Nickname>
-              <p>{age} Jahre</p>
-              <p>{session.user.city}</p>
-            </Info>
-          </AllInfo>
-          <ButtonContainer>
-            <Button onClick={() => signOut()}>
-              <Image
-                src={logoutIcon}
-                width="30"
-                height="30"
-                alt="logout icon"
-              />
-              Sign out
-            </Button>
-          </ButtonContainer>
-        </PersonSection>
+        <Sections>
+          <Section>
+            <AllInfo>
+              <ProfilePic>
+                <img alt="profilepic" src={session.user.image} />
+              </ProfilePic>
+              <Info>
+                <Nickname>{session.user.nickname}</Nickname>
+                <p>{age} Jahre</p>
+                <p>{session.user.city}</p>
+              </Info>
+            </AllInfo>
+            <ButtonContainer>
+              <Button onClick={() => signOut()}>
+                <Image
+                  src={logoutIcon}
+                  width="30"
+                  height="30"
+                  alt="logout icon"
+                />
+                Sign out
+              </Button>
+            </ButtonContainer>
+          </Section>
+          <Section>
+            {aboutMeText.data ? (
+              <AboutMe aboutMeText={aboutMeText.data.aboutMeText} />
+            ) : null}
+          </Section>
+        </Sections>
       </Container>
       <Navbar />
     </main>
@@ -80,12 +91,22 @@ const Nickname = styled.p`
   margin-bottom: 10px !important;
 `;
 
-const PersonSection = styled.section`
+const Section = styled.section`
   background-color: #363535;
   display: flex;
   flex-direction: column;
   padding: 10px;
+  min-height: 155px;
+  @import url("https://fonts.googleapis.com/css2?family=Bona+Nova&display=swap");
+  font-family: "Bona Nova", serif;
 `;
+
+const Sections = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
 const ProfilePic = styled.div`
   > img {
     border-radius: 999px;
@@ -96,8 +117,6 @@ const ProfilePic = styled.div`
 const Info = styled.div`
   background-image: #363535;
   padding: 5px;
-  @import url("https://fonts.googleapis.com/css2?family=Bona+Nova&display=swap");
-  font-family: "Bona Nova", serif;
   font-size: 18px;
   > p {
     margin: 0;

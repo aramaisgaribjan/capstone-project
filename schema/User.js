@@ -7,6 +7,7 @@ const userSchema = new Schema({
   email: { type: String },
   city: { type: String },
   birthday: { type: Date },
+  aboutMeText: { type: String },
 });
 
 export default model("User", userSchema, "users", { overwriteModels: true });

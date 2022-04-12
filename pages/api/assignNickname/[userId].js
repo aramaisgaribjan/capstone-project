@@ -20,6 +20,7 @@ export default async function handler(request, response) {
               city: request.body.city,
               birthday: request.body.birthday,
               image: request.body.image,
+              aboutMeText: request.body.aboutMeText,
             },
           },
           { returnDocument: "after", runValidators: true }
@@ -34,6 +35,12 @@ export default async function handler(request, response) {
           response.status(404).json({ error: "Not found" });
         }
 
+        break;
+
+      case "GET":
+        const aboutMeText = await User.findById(session.user.id).exec();
+        response.status(200).json(aboutMeText);
+        console.log(session.user.id);
         break;
 
       default:

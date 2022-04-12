@@ -27,6 +27,7 @@ export default NextAuth({
           city: user.city,
           birthday: user.birthday,
           image: user.image,
+          aboutMe: user.aboutMe,
         },
       };
     },
