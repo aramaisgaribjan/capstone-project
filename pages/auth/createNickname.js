@@ -9,11 +9,11 @@ export default function CreateNickname({ id }) {
   const { data: session } = useSession();
   const router = useRouter();
 
-  async function assignNickname(nickname, city, birthday) {
+  async function assignNickname(nickname, city, birthday, aboutMeText) {
     const response = await fetch(`/api/assignNickname/${session.user.id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ nickname, city, birthday }),
+      body: JSON.stringify({ nickname, city, birthday, aboutMeText }),
     });
     if (response.ok) {
       router.push("/");
@@ -22,10 +22,13 @@ export default function CreateNickname({ id }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    const aboutMeText =
+      "Ein schlechter Tag beim Angeln ist immer noch besser als ein guter Tag auf der Arbeit.";
     assignNickname(
       event.target.elements.nickname.value,
       event.target.elements.city.value,
-      event.target.elements.birthday.value
+      event.target.elements.birthday.value,
+      aboutMeText
     );
   }
 
