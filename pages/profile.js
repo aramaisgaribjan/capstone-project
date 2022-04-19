@@ -7,6 +7,7 @@ import Container from "../components/Container";
 import Navbar from "../components/Navbar";
 import TitleBar from "../components/TitleBar";
 import AboutMe from "../components/AboutMe";
+import UploadCatches from "../components/UploadCatches";
 import useSWR from "swr";
 
 import logoutIcon from "../public/SVG/LogoutVector.svg";
@@ -61,6 +62,9 @@ export default function Profile(user) {
             {aboutMeText.data ? (
               <AboutMe aboutMeText={aboutMeText.data.aboutMeText} />
             ) : null}
+          </Section>
+          <Section>
+            <UploadCatches />
           </Section>
         </Sections>
       </Container>
