@@ -34,40 +34,73 @@ export default function CatchesGallery({
   }
 
   return (
-    <>
+    <Main>
+      <TitleCatches>
+        <H3>MEINE FÄNGE</H3>
+        <HR />
+      </TitleCatches>
+
       <Ul>
         {images.map((image) => {
           return (
             <li key={image.id}>
               <a href={image.link}>
-                <div>
+                <StyledImage>
                   <Image
-                    width={image.width}
-                    height={image.height}
+                    width="145px"
+                    height="180px"
                     src={image.image}
                     alt=""
                   />
-                </div>
+                </StyledImage>
               </a>
             </li>
           );
         })}
       </Ul>
+
       <p>
-        <button onClick={handleLoadMore}>Load more</button>
+        {nextCursor ? <button onClick={handleLoadMore}>Mehr laden</button> : ""}
       </p>
-    </>
+    </Main>
   );
 }
+
+const StyledImage = styled.div`
+  padding: 6px;
+  background-color: grey;
+`;
+
+const TitleCatches = styled.div`
+  position: relative;
+`;
+
+const Main = styled.main`
+  > p {
+    display: flex;
+    justify-content: end;
+  }
+`;
 
 const Ul = styled.ul`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 0.5em;
+  gap: 1em;
+  padding: 0;
+  justify-content: center;
   > li {
     list-style-type: none;
   }
+`;
+
+const HR = styled.hr`
+  width: 350px;
+  margin-top: 0;
+`;
+
+const H3 = styled.h3`
+  margin: 10px 0 10px 10px;
 `;
 
 export async function getStaticProps() {
