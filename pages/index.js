@@ -5,6 +5,7 @@ import { useCreateFishingday } from "../utils/hooks/useCreateFishingday";
 import { getSession } from "next-auth/react";
 import Navbar from "../components/Navbar";
 import TitleBar from "../components/TitleBar";
+import Map from "../components/Map";
 
 export default function Home() {
   const { handleCreateFishingday, error } = useCreateFishingday();
@@ -17,12 +18,7 @@ export default function Home() {
       <main>
         <TitleBar />
         <Container>
-          <FishingdayForm
-            onSubmitFishingday={handleCreateFishingday}
-            submitText={"Erstellen"}
-            error={error}
-            id="create"
-          />
+          <Map />
         </Container>
         <Navbar />
       </main>
