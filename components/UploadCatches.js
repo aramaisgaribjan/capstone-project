@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
+import styled from "styled-components";
 
 export default function UploadCatches() {
   const [imageSrc, setImageSrc] = useState();
@@ -43,17 +44,22 @@ export default function UploadCatches() {
     <div>
       <main>
         <form method="post" onChange={handleOnChange} onSubmit={handleOnSubmit}>
-          <p>
+          <P>
             <input type="file" name="file" />
-          </p>
+          </P>
+          <UploadedPhoto>
+            {imageSrc ? (
+              <img src={imageSrc} alt="image" width="145px" height="180px" />
+            ) : (
+              ""
+            )}
 
-          <img src={imageSrc} alt="image" width="150px" />
-
-          {imageSrc && !uploadData && (
-            <p>
-              <button>Hochladen</button>
-            </p>
-          )}
+            {imageSrc && !uploadData && (
+              <p>
+                <button>Hochladen</button>
+              </p>
+            )}
+          </UploadedPhoto>
 
           {uploadData && (
             <code>
@@ -65,3 +71,14 @@ export default function UploadCatches() {
     </div>
   );
 }
+
+const P = styled.p`
+  display: flex;
+  justify-content: end;
+`;
+
+const UploadedPhoto = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+`;
