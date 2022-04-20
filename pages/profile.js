@@ -8,11 +8,13 @@ import Navbar from "../components/Navbar";
 import TitleBar from "../components/TitleBar";
 import AboutMe from "../components/AboutMe";
 import UploadCatches from "../components/UploadCatches";
+import CatchesGallery from "../components/CatchesGallery";
 import useSWR from "swr";
+import { search, mapImageResources } from "../src/lib/cloudinary";
 
 import logoutIcon from "../public/SVG/LogoutVector.svg";
 
-export default function Profile(user) {
+export default function Profile({ images, nextCursor }) {
   const { data: session } = useSession();
 
   function getAge(dateString) {
@@ -64,6 +66,7 @@ export default function Profile(user) {
             ) : null}
           </Section>
           <Section>
+            <CatchesGallery images={images} nextCursor={nextCursor} />
             <UploadCatches />
           </Section>
         </Sections>
@@ -144,10 +147,19 @@ export async function getServerSideProps(context) {
       },
     };
   }
+  const results = await search();
+
+  const { resources, next_cursor: nextCursor } = results;
+
+  const images = mapImageResources(resources);
+
+  console.log(images);
 
   return {
     props: {
       session,
+      images,
+      nextCursor: nextCursor || false,
     },
   };
 }
