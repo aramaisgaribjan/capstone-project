@@ -79,6 +79,9 @@ export function Fishingday({ fishingday }) {
     day: "numeric",
     month: "numeric",
     year: "numeric",
+  });
+
+  let timeFormat = new Intl.DateTimeFormat("de-DE", {
     hour: "numeric",
     minute: "numeric",
     hour12: false,
@@ -106,9 +109,16 @@ export function Fishingday({ fishingday }) {
     return (
       <Container>
         <Content>
-          <span>{"Zielfisch: " + fishingday.fish}</span>
-          <span>{"Gewässer: " + fishingday.waters}</span>
-          <span>{"Datum: " + dtFormat.format(date) + " Uhr"}</span>
+          <Top>
+            <Left>
+              <span>{"Zielfisch: " + fishingday.fish}</span>
+              <span>{"Gewässer: " + fishingday.waters}</span>
+            </Left>
+            <Right>
+              <span>{dtFormat.format(date)}</span>
+              <span>{timeFormat.format(date) + " Uhr"}</span>
+            </Right>
+          </Top>
           <span>{"Ersteller: " + fishingday.userId?.nickname}</span>
           <span>
             Teilnehmer: <li>{fishingday.userId?.nickname}</li>
@@ -121,8 +131,15 @@ export function Fishingday({ fishingday }) {
         </Content>
         {fishingday.userId?._id === session.user.id ? (
           <Buttons>
-            <button onClick={handleEditButtonClick}>Bearbeiten</button>
-            <button onClick={handleDeleteButtonClick}>Löschen</button>
+            <Button onClick={handleEditButtonClick} backgroundColor={"green"}>
+              Bearbeiten
+            </Button>
+            <Button
+              onClick={handleDeleteButtonClick}
+              backgroundColor={"#8a2900"}
+            >
+              Löschen
+            </Button>
           </Buttons>
         ) : (
           <Buttons>
@@ -149,14 +166,13 @@ export function Fishingday({ fishingday }) {
 
 export const Container = styled.div`
   padding: 1rem 1rem 0.75rem 1rem;
-  background-color: white;
   box-shadow: 0 0 10px rgb(0 0 0 / 6%), 0 5px 20px rgb(0 0 0 / 5%);
   height: 100%;
-  border-radius: 10px;
   display: flex;
   gap: 1rem;
-  width: 300px;
+  width: 390px;
   flex-wrap: wrap;
+  background-color: #363535;
 
   > form {
     height: 100%;
@@ -166,11 +182,29 @@ export const Container = styled.div`
   }
 `;
 
+const Top = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+`;
+
+const Left = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
+
+const Right = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
+
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  color: black;
   gap: 10px;
+  color: white;
 `;
 
 const Buttons = styled.div`
