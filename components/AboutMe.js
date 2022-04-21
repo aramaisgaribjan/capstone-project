@@ -63,13 +63,13 @@ export default function AboutMe({ aboutMeText }) {
 }
 
 const Article = styled.article`
-  width: 350px;
+  width: 330px;
   margin: 7px 0 30px 10px;
   font-size: 18px;
 `;
 
 const HR = styled.hr`
-  width: 350px;
+  width: 335px;
   margin-top: 0;
 `;
 

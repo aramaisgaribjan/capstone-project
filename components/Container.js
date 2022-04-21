@@ -5,8 +5,8 @@ const Navbar = () => {
 };
 
 const Container = styled.div`
-  width: 390px;
-  height: 706px;
+  width: 375px;
+  height: 549px;
   background-color: #404040;
   color: white;
   overflow-y: auto;

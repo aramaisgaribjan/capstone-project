@@ -63,7 +63,7 @@ const Form = styled.form`
     padding: 0.5rem;
     border: 2px solid rgb(190 190 190);
     border-radius: 3px;
-    width: 200px;
+    width: 185px;
   }
 
   input[type="submit"] {

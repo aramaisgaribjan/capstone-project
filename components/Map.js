@@ -14,8 +14,8 @@ import {
 
 const libraries = ["places"];
 const mapContainerStyle = {
-  height: "706px",
-  width: "390px",
+  height: "549px",
+  width: "375px",
 };
 const options = {
   disableDefaultUI: true,

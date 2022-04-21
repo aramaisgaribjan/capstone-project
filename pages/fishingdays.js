@@ -32,7 +32,7 @@ export default function Meeting() {
 
 const FishingdayList = styled.ul`
   list-style: none;
-  width: 390px;
+  width: 375px;
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;

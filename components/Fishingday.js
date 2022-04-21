@@ -170,7 +170,7 @@ export const Container = styled.div`
   height: 100%;
   display: flex;
   gap: 1rem;
-  width: 390px;
+  width: 375px;
   flex-wrap: wrap;
   background-color: #363535;
 

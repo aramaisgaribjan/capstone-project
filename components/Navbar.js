@@ -58,8 +58,8 @@ const Ul = styled.ul`
   padding-inline-start: 0px;
   display: flex;
   position: fixed;
-  width: 390px;
-  height: 93px;
+  width: 375px;
+  height: 73px;
   margin: 0;
   justify-content: space-around;
   flex-direction: row;
