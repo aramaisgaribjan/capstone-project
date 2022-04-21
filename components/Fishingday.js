@@ -169,6 +169,7 @@ export const Container = styled.div`
   box-shadow: 0 0 10px rgb(0 0 0 / 6%), 0 5px 20px rgb(0 0 0 / 5%);
   height: 100%;
   display: flex;
+  flex-direction: column;
   gap: 1rem;
   width: 375px;
   flex-wrap: wrap;
@@ -184,8 +185,9 @@ export const Container = styled.div`
 
 const Top = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: row;
-  gap: 7rem;
+  justify-content: space-between;
 `;
 
 const Left = styled.div`

@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-export function FishingdayForm({ onSubmitFishingday, submitText, error, id }) {
+export function FishingdayForm({
+  onSubmitFishingday,
+  submitText,
+  error,
+  id,
+  markers,
+}) {
   function handleSubmit(event) {
     event.preventDefault();
     onSubmitFishingday(
@@ -8,6 +14,8 @@ export function FishingdayForm({ onSubmitFishingday, submitText, error, id }) {
         fish: event.target.elements.fish.value,
         waters: event.target.elements.waters.value,
         dateTime: event.target.elements.dateTime.value,
+        lat: markers[0].lat,
+        lng: markers[0].lng,
       },
       event.target
     );
@@ -21,7 +29,7 @@ export function FishingdayForm({ onSubmitFishingday, submitText, error, id }) {
         <input type="text" required id={`fish-${id}`} name="fish" />
         <label htmlFor={`waters-${id}`}>Gewässer</label>
         <input type="text" required id={`waters-${id}`} name="waters" />
-        <label htmlFor={`dateTime-${id}`}>Datum & Uhrzeit</label>
+        <label htmlFor={`dateTime-${id}`}>Datum &amp; Uhrzeit</label>
         <input
           type="datetime-local"
           required

@@ -101,10 +101,8 @@ const Section = styled.section`
   background-color: #363535;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 0 10px 10px 10px;
   max-height: 355px;
-  @import url("https://fonts.googleapis.com/css2?family=Bona+Nova&display=swap");
-  font-family: "Bona Nova", serif;
   overflow-y: scroll;
 `;
 

@@ -151,10 +151,8 @@ const Main = styled.main`
   height: 100vh;
   width: 100vw;
   > p {
-    @import url("https://fonts.googleapis.com/css2?family=Balthazar&family=Roboto:wght@100&display=swap");
     color: white;
     position: relative;
-    font-family: "Balthazar", serif;
     font-size: 48px;
     margin: 0;
     text-align: center;

@@ -36,7 +36,7 @@ export default function CatchesGallery({
   return (
     <Main>
       <TitleCatches>
-        <H3>MEINE FÄNGE</H3>
+        <h3>MEINE FÄNGE</h3>
         <HR />
       </TitleCatches>
 
@@ -72,10 +72,19 @@ const StyledImage = styled.div`
 `;
 
 const TitleCatches = styled.div`
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #363535;
+
+  > h3 {
+    padding: 15px 10px 10px 10px;
+    margin: 0;
+  }
 `;
 
 const Main = styled.main`
+  padding: 0;
   > p {
     display: flex;
     justify-content: end;
@@ -95,12 +104,8 @@ const Ul = styled.ul`
 `;
 
 const HR = styled.hr`
-  width: 350px;
+  width: 335px;
   margin-top: 0;
-`;
-
-const H3 = styled.h3`
-  margin: 10px 0 10px 10px;
 `;
 
 export async function getStaticProps() {
