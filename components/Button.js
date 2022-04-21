@@ -13,7 +13,7 @@ const StyledButton = styled.button`
   border: 0;
   border-radius: 8px;
   color: white;
-  width: 100px;
+  width: fit-content;
   height: 30px;
   font-size: 16px;
 `;

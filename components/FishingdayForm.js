@@ -53,7 +53,7 @@ const Form = styled.form`
     margin: 20px auto;
     background-color: #909090;
     padding: 1rem;
-    border-radius: 5px;
+    border-radius: 3px;
     > h3 {
       margin-top: 0;
     }
@@ -63,7 +63,7 @@ const Form = styled.form`
     padding: 0.5rem;
     border: 2px solid rgb(190 190 190);
     border-radius: 3px;
-    width: 300px;
+    width: 200px;
   }
 
   input[type="submit"] {
