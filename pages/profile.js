@@ -90,6 +90,7 @@ const Button = styled.button`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
+  margin-right: 5px;
 `;
 
 const Nickname = styled.p`
@@ -132,6 +133,7 @@ const AllInfo = styled.div`
   display: flex;
   padding: 5px;
   gap: 20px;
+  margin-top: 10px;
 `;
 
 export async function getServerSideProps(context) {

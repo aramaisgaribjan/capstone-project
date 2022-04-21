@@ -67,8 +67,8 @@ export default function CatchesGallery({
 }
 
 const StyledImage = styled.div`
-  padding: 6px;
-  background-color: grey;
+  padding: 6px 6px 2px 6px;
+  background-color: white;
 `;
 
 const TitleCatches = styled.div`
