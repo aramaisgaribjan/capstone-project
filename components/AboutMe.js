@@ -76,7 +76,7 @@ const HR = styled.hr`
 `;
 
 const H3 = styled.h3`
-  margin: 10px 0 10px 10px;
+  margin: 15px 0 10px 10px;
 `;
 
 const ButtonContainer = styled.div`

@@ -36,7 +36,7 @@ export default function CatchesGallery({
   return (
     <Main>
       <TitleCatches>
-        <H3>MEINE FÄNGE</H3>
+        <h3>MEINE FÄNGE</h3>
         <HR />
       </TitleCatches>
 
@@ -78,7 +78,7 @@ const TitleCatches = styled.div`
   background-color: #363535;
 
   > h3 {
-    padding: 10px;
+    padding: 15px 10px 10px 10px;
     margin: 0;
   }
 `;
@@ -104,12 +104,8 @@ const Ul = styled.ul`
 `;
 
 const HR = styled.hr`
-  width: 350px;
+  width: 335px;
   margin-top: 0;
-`;
-
-const H3 = styled.h3`
-  margin: 10px 0 10px 10px;
 `;
 
 export async function getStaticProps() {

@@ -38,7 +38,7 @@ const Ul = styled.div`
   height: 55px;
   > div {
     color: white;
-    font-size: 35px;
+    font-size: 30px;
   }
 `;
 
