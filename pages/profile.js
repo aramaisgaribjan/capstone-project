@@ -11,7 +11,6 @@ import UploadCatches from "../components/UploadCatches";
 import CatchesGallery from "../components/CatchesGallery";
 import useSWR from "swr";
 import { search, mapImageResources } from "../src/lib/cloudinary";
-
 import logoutIcon from "../public/SVG/LogoutVector.svg";
 
 export default function Profile({ images, nextCursor }) {

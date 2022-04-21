@@ -185,7 +185,7 @@ export const Container = styled.div`
 const Top = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 5px;
+  gap: 7rem;
 `;
 
 const Left = styled.div`

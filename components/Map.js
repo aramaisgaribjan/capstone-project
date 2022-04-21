@@ -1,6 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import styled from "styled-components";
+import { FishingdayForm } from "../components/FishingdayForm";
+import { useCreateFishingday } from "../utils/hooks/useCreateFishingday";
 
 import {
   GoogleMap,
@@ -24,11 +27,11 @@ const center = {
 };
 
 export default function Map() {
+  const { handleCreateFishingday, error } = useCreateFishingday();
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyBVllhlUdExiCHwryLIqfvWuzx4DGJqrhQ",
     libraries,
   });
-
   const [markers, setMarkers] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
 
@@ -71,7 +74,7 @@ export default function Map() {
           );
         }}
       >
-        <img src="/kompass.png" alt="standort" width="70px" />
+        <img src="/kompass.png" alt="standort" width="60px" />
       </MyLocation>
     );
   }
@@ -93,7 +96,7 @@ export default function Map() {
             position={{ lat: marker.lat, lng: marker.lng }}
             icon={{
               url: "/float.png",
-              scaledSize: new window.google.maps.Size(50, 70),
+              scaledSize: new window.google.maps.Size(70, 70),
             }}
             onClick={() => {
               setSelected(marker);
@@ -110,9 +113,12 @@ export default function Map() {
               setSelected(null);
             }}
           >
-            <div>
-              <P>Erstelle deinen Angeltag</P>
-            </div>
+            <FishingdayForm
+              onSubmitFishingday={handleCreateFishingday}
+              submitText={"Erstellen"}
+              error={error}
+              id="create"
+            />
           </InfoWindow>
         ) : null}
       </GoogleMap>
