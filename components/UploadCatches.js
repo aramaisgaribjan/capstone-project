@@ -75,6 +75,8 @@ export default function UploadCatches() {
 const P = styled.p`
   display: flex;
   justify-content: end;
+  > input {
+  }
 `;
 
 const UploadedPhoto = styled.div`

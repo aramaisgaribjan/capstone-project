@@ -1,6 +1,6 @@
+/* eslint-disable @next/next/no-page-custom-font */
 import Head from "next/head";
 import Container from "../components/Container";
-import { FishingdayForm } from "../components/FishingdayForm";
 import { useCreateFishingday } from "../utils/hooks/useCreateFishingday";
 import { getSession } from "next-auth/react";
 import Navbar from "../components/Navbar";
@@ -14,6 +14,10 @@ export default function Home() {
     <div>
       <Head>
         <title>Capstone-Project</title>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400&display=swap"
+          rel="stylesheet"
+        ></link>
       </Head>
       <main>
         <TitleBar />

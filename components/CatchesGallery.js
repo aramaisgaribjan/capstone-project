@@ -72,10 +72,19 @@ const StyledImage = styled.div`
 `;
 
 const TitleCatches = styled.div`
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #363535;
+
+  > h3 {
+    padding: 10px;
+    margin: 0;
+  }
 `;
 
 const Main = styled.main`
+  padding: 0;
   > p {
     display: flex;
     justify-content: end;

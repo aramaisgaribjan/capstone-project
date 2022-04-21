@@ -19,8 +19,8 @@ const Navbar = () => {
             <a>
               <Image
                 src={fishingDaysIcon}
-                width="55"
-                height="47"
+                width="45"
+                height="37"
                 alt="Bild in svg"
               />
             </a>
@@ -29,7 +29,7 @@ const Navbar = () => {
         <StyledLink className={router.pathname == "/" ? "active" : ""}>
           <Link href="/">
             <a>
-              <Image src={mapIcon} width="55" height="47" alt="Bild in svg" />
+              <Image src={mapIcon} width="45" height="37" alt="Bild in svg" />
             </a>
           </Link>
         </StyledLink>
@@ -38,8 +38,8 @@ const Navbar = () => {
             <a>
               <Image
                 src={profileIcon}
-                width="55"
-                height="47"
+                width="45"
+                height="37"
                 alt="Bild in svg"
               />
             </a>
@@ -53,8 +53,6 @@ const Navbar = () => {
 const Ul = styled.ul`
   box-sizing: border-box;
   background-color: black;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
   padding-inline-start: 0px;
   display: flex;
   position: fixed;

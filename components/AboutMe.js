@@ -1,16 +1,15 @@
 import { useState } from "react";
 import EditAboutMeForm from "./EditAboutMeForm";
 import styled from "styled-components";
-import useSWR from "swr";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
+import editPen from "../public/SVG/editPen.svg";
 
 export default function AboutMe({ aboutMeText }) {
   const [isEditMode, setIsEditMode] = useState(false);
   const [error, setError] = useState();
   const [aboutMeActualText, setAboutMeActualText] = useState(aboutMeText);
   const { data: session } = useSession();
-
-  const aboutMes = useSWR("/api/assignNickname");
 
   async function handleEditAboutMe(aboutMeData) {
     console.log("Hier: ");
@@ -54,7 +53,10 @@ export default function AboutMe({ aboutMeText }) {
           <Article>{aboutMeActualText}</Article>
 
           <ButtonContainer>
-            <button onClick={handleEditButtonClick}>Bearbeiten</button>
+            <button onClick={handleEditButtonClick}>
+              <p>Bearbeiten</p>
+              <Image src={editPen} width="23" height="23" alt="editpen icon" />
+            </button>
           </ButtonContainer>
         </>
       )}
@@ -80,6 +82,18 @@ const H3 = styled.h3`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
+  flex-direction: row;
+  > button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 15px;
+    gap: 5px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 `;
 
 export const Container = styled.div`

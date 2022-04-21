@@ -35,14 +35,10 @@ const Ul = styled.div`
   background-color: black;
   position: relative;
   width: 375px;
-  height: 45px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  height: 55px;
   > div {
-    @import url("https://fonts.googleapis.com/css2?family=Bona+Nova&display=swap");
     color: white;
     font-size: 35px;
-    font-family: "Bona Nova", serif;
   }
 `;
 

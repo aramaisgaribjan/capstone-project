@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import { FishingdayForm } from "../components/FishingdayForm";
 import { useCreateFishingday } from "../utils/hooks/useCreateFishingday";
+import useSWR from "swr";
 
 import {
   GoogleMap,
@@ -34,6 +35,8 @@ export default function Map() {
   });
   const [markers, setMarkers] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
+
+  const fishingdays = useSWR("/api/fishingdays");
 
   const onMapClick = React.useCallback((event) => {
     setMarkers((current) => [
@@ -90,6 +93,19 @@ export default function Map() {
         onClick={onMapClick}
         onLoad={onMapLoad}
       >
+        {fishingdays.data
+          ? markers.map((fishingdays) => (
+              <Marker
+                key={fishingdays.time.toISOString()}
+                position={{ lat: fishingdays.lat, lng: fishingdays.lng }}
+                icon={{
+                  url: "/float.png",
+                  scaledSize: new window.google.maps.Size(70, 70),
+                }}
+              />
+            ))
+          : null}
+
         {markers.map((marker) => (
           <Marker
             key={marker.time.toISOString()}
@@ -118,6 +134,7 @@ export default function Map() {
               submitText={"Erstellen"}
               error={error}
               id="create"
+              markers={markers}
             />
           </InfoWindow>
         ) : null}
@@ -132,7 +149,7 @@ const P = styled.p`
 
 const MyLocation = styled.button`
   position: absolute;
-  top: 1rem;
+  top: 0;
   right: 0;
   background: none;
   border: none;
