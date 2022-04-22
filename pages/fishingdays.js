@@ -25,6 +25,17 @@ export default function Meeting() {
                 ""
               )
             )}
+            {fishingdays.data.map((fishingday) => {
+              fishingday.participants.some((participant) =>
+                participant._id === session.user.id ? (
+                  <li key={fishingday._id}>
+                    <Fishingday fishingday={fishingday} />
+                  </li>
+                ) : (
+                  ""
+                )
+              );
+            })}
           </FishingdayList>
         ) : (
           "Empty"
