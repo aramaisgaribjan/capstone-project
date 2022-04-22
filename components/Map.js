@@ -38,6 +38,8 @@ export default function Map() {
 
   const fishingdays = useSWR("/api/fishingdays");
 
+  console.log(fishingdays.data);
+
   const onMapClick = React.useCallback((event) => {
     setMarkers((current) => [
       ...current,
@@ -94,10 +96,13 @@ export default function Map() {
         onLoad={onMapLoad}
       >
         {fishingdays.data
-          ? markers.map((fishingdays) => (
+          ? fishingdays.data.map((marker) => (
               <Marker
-                key={fishingdays.time.toISOString()}
-                position={{ lat: fishingdays.lat, lng: fishingdays.lng }}
+                key={marker._id}
+                position={{
+                  lat: parseFloat(marker.lat),
+                  lng: parseFloat(marker.lng),
+                }}
                 icon={{
                   url: "/float.png",
                   scaledSize: new window.google.maps.Size(70, 70),
