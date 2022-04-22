@@ -1,5 +1,5 @@
 import Container from "../components/Container";
-import { getSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import Navbar from "../components/Navbar";
 import TitleBar from "../components/TitleBar";
 import { Fishingday } from "../components/Fishingday";
@@ -8,6 +8,7 @@ import useSWR from "swr";
 
 export default function Meeting() {
   const fishingdays = useSWR("/api/fishingdays");
+  const { data: session } = useSession();
 
   return (
     <main>
@@ -15,11 +16,15 @@ export default function Meeting() {
       <Container>
         {fishingdays.data ? (
           <FishingdayList>
-            {fishingdays.data.map((fishingday) => (
-              <li key={fishingday._id}>
-                <Fishingday fishingday={fishingday} />
-              </li>
-            ))}
+            {fishingdays.data.map((fishingday) =>
+              fishingday.userId._id === session.user.id ? (
+                <li key={fishingday._id}>
+                  <Fishingday fishingday={fishingday} />
+                </li>
+              ) : (
+                ""
+              )
+            )}
           </FishingdayList>
         ) : (
           "Empty"

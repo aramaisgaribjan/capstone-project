@@ -10,7 +10,7 @@ const TitleBar = () => {
       pathTitle = "MAP";
       return pathTitle;
     } else if (path == "/fishingdays") {
-      pathTitle = "ANGELTAGE";
+      pathTitle = "MEINE ANGELTAGE";
       return pathTitle;
     } else if (path == "/profile") {
       pathTitle = "PROFIL";
