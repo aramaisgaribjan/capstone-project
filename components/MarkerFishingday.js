@@ -52,57 +52,48 @@ export default function MarkerFishingday({ fishingday }) {
     hour12: false,
   });
 
-  let date = new Date(fishingday.dateTime).toISOString;
+  let date = new Date(fishingday.dateTime);
 
-  return fishingdays.data
-    ? fishingdays.data.map((fishingday) => (
-        <>
-          <Container>
-            <Content>
-              <Top>
-                <Left>
-                  <span>{"Zielfisch: " + fishingday.fish}</span>
-                  <span>{"Gewässer: " + fishingday.waters}</span>
-                </Left>
-                <Right></Right>
-              </Top>
-              <span>{"Ersteller: " + fishingday.userId?.nickname}</span>
-              <span>
-                Teilnehmer: <li>{fishingday.userId?.nickname}</li>
-                {fishingday.participants.map((participant) => (
-                  <li key={fishingday._id}>
-                    <Teilnehmer>{participant.nickname}</Teilnehmer>
-                  </li>
-                ))}
-              </span>
-            </Content>
-            {fishingday.userId?._id !== session.user.id ? (
-              <Buttons>
-                {fishingday.participants.some(
-                  (participant) => participant._id === session.user.id
-                ) ? (
-                  <Button
-                    onClick={handleLeaveFishingday}
-                    backgroundColor={"#8a2900"}
-                  >
-                    Austragen
-                  </Button>
-                ) : (
-                  <Button
-                    onClick={handleJoinFishingday}
-                    backgroundColor={"green"}
-                  >
-                    Teilnehmen
-                  </Button>
-                )}
-              </Buttons>
-            ) : (
-              ""
-            )}
-          </Container>
-        </>
-      ))
-    : null;
+  return (
+    <Container>
+      <Content>
+        <Top>
+          <Left>
+            <span>{"Zielfisch: " + fishingday.fish}</span>
+            <span>{"Gewässer: " + fishingday.waters}</span>
+            <span>{dtFormat.format(date)}</span>
+            <span>{timeFormat.format(date) + " Uhr"}</span>
+          </Left>
+          <Right></Right>
+        </Top>
+        <span>
+          Teilnehmer: <Li>{fishingday.userId?.nickname}</Li>
+          {fishingday.participants.map((participant) => (
+            <Li key={fishingday._id}>
+              <Teilnehmer>{participant.nickname}</Teilnehmer>
+            </Li>
+          ))}
+        </span>
+      </Content>
+      {fishingday.userId?._id !== session.user.id ? (
+        <Buttons>
+          {fishingday.participants.some(
+            (participant) => participant._id === session.user.id
+          ) ? (
+            <Button onClick={handleLeaveFishingday} backgroundColor={"#8a2900"}>
+              Austragen
+            </Button>
+          ) : (
+            <Button onClick={handleJoinFishingday} backgroundColor={"green"}>
+              Teilnehmen
+            </Button>
+          )}
+        </Buttons>
+      ) : (
+        ""
+      )}
+    </Container>
+  );
 }
 
 export const Container = styled.div`
@@ -113,6 +104,7 @@ export const Container = styled.div`
   width: 200px;
   flex-wrap: wrap;
   background-color: #363535;
+  padding: 10px;
 
   > form {
     height: 100%;
@@ -146,6 +138,7 @@ const Content = styled.div`
   flex-direction: column;
   gap: 10px;
   color: white;
+  font-size: 17px;
 `;
 
 const Buttons = styled.div`
@@ -159,4 +152,9 @@ const Buttons = styled.div`
 
 const Teilnehmer = styled.ul`
   padding: 0;
+  margin: 0;
+`;
+
+const Li = styled.li`
+  list-style: none;
 `;

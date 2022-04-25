@@ -10,32 +10,31 @@ export default function Meeting() {
   const fishingdays = useSWR("/api/fishingdays");
   const { data: session } = useSession();
 
+  console.log(fishingdays.data);
   return (
     <main>
       <TitleBar />
       <Container>
         {fishingdays.data ? (
           <FishingdayList>
-            {fishingdays.data.map((fishingday) =>
-              fishingday.userId._id === session.user.id ? (
+            {fishingdays.data
+              .filter((fishingday) => fishingday.userId._id === session.user.id)
+              .map((fishingday) => (
                 <li key={fishingday._id}>
                   <Fishingday fishingday={fishingday} />
                 </li>
-              ) : (
-                ""
-              )
-            )}
-            {fishingdays.data.map((fishingday) => {
-              fishingday.participants.some((participant) =>
-                participant._id === session.user.id ? (
-                  <li key={fishingday._id}>
-                    <Fishingday fishingday={fishingday} />
-                  </li>
-                ) : (
-                  ""
+              ))}
+            {fishingdays.data
+              .filter((fishingday) =>
+                fishingday.participants.some(
+                  (participant) => participant._id === session.user.id
                 )
-              );
-            })}
+              )
+              .map((fishingday) => (
+                <li key={fishingday._id}>
+                  <Fishingday fishingday={fishingday} />
+                </li>
+              ))}
           </FishingdayList>
         ) : (
           "Empty"
