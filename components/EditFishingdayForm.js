@@ -65,24 +65,30 @@ export function EditFishingdayForm({
 
 const Form = styled.form`
   padding: 1rem 1rem 1rem 1rem;
-  background-color: lightgrey;
+  background-color: #363535;
   height: 100%;
-  border-radius: 10px;
   display: flex;
   gap: 1rem;
-  width: 300px;
+  width: 375px;
   margin: auto;
   flex-wrap: wrap;
 
   > div {
-    color: black;
+    color: white;
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
   }
+  input[type="text"] {
+    margin: auto;
+    width: 345px;
+    padding: 0.3rem;
+    border: 2px solid rgb(190 190 190);
+    border-radius: 3px;
+  }
   input[type="submit"] {
     margin: auto;
-    width: 100px;
+    width: fit-content;
     padding: 0.5rem;
     border: 2px solid rgb(190 190 190);
     border-radius: 3px;

@@ -39,7 +39,11 @@ export default function Profile({ images, nextCursor }) {
           <Section>
             <AllInfo>
               <ProfilePic>
-                <img alt="profilepic" src={session.user.image} />
+                <img
+                  alt="profilepic"
+                  src={session.user.image}
+                  referrerpolicy="no-referrer"
+                />
               </ProfilePic>
               <Info>
                 <Nickname>{session.user.nickname}</Nickname>

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { FishingdayForm } from "../components/FishingdayForm";
 import { useCreateFishingday } from "../utils/hooks/useCreateFishingday";
 import useSWR from "swr";
+import MarkerFishingday from "./MarkerFishingday";
 
 import {
   GoogleMap,
@@ -35,10 +36,9 @@ export default function Map() {
   });
   const [markers, setMarkers] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
+  const [clicked, setClicked] = React.useState(null);
 
   const fishingdays = useSWR("/api/fishingdays");
-
-  console.log(fishingdays.data);
 
   const onMapClick = React.useCallback((event) => {
     setMarkers((current) => [
@@ -84,6 +84,11 @@ export default function Map() {
     );
   }
 
+  const selectedFishingday = fishingdays.data?.find(
+    (fishingday) => fishingday._id === clicked
+  );
+  console.log(selectedFishingday);
+
   return (
     <div>
       <Locate panTo={panTo} />
@@ -107,9 +112,26 @@ export default function Map() {
                   url: "/float.png",
                   scaledSize: new window.google.maps.Size(70, 70),
                 }}
+                onClick={() => {
+                  setClicked(marker._id);
+                }}
               />
             ))
           : null}
+
+        {selectedFishingday ? (
+          <InfoWindow
+            position={{
+              lat: parseFloat(selectedFishingday.lat) + 0.0099,
+              lng: parseFloat(selectedFishingday.lng),
+            }}
+            onCloseClick={() => {
+              setClicked(null);
+            }}
+          >
+            <MarkerFishingday fishingday={selectedFishingday} />
+          </InfoWindow>
+        ) : null}
 
         {markers.map((marker) => (
           <Marker
@@ -150,6 +172,12 @@ export default function Map() {
 
 const P = styled.p`
   color: black;
+`;
+
+const FishingdaysInfos = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;
 
 const MyLocation = styled.button`
