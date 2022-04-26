@@ -61,8 +61,8 @@ export default function MarkerFishingday({ fishingday }) {
           <Left>
             <span>{"Zielfisch: " + fishingday.fish}</span>
             <span>{"Gewässer: " + fishingday.waters}</span>
-            <span>{dtFormat.format(date)}</span>
-            <span>{timeFormat.format(date) + " Uhr"}</span>
+            <span>{"Datum: " + dtFormat.format(date)}</span>
+            <span>{"Uhrzeit " + timeFormat.format(date) + " Uhr"}</span>
           </Left>
           <Right></Right>
         </Top>

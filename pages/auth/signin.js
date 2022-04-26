@@ -28,18 +28,20 @@ export default function SignIn({ providers }) {
       </ImageContainer>
       <p>FishingBuddies</p>
       <Buttons>
-        {Object.values(providers).map((provider) => (
-          <Button
-            key={provider.name}
-            onClick={() =>
-              signIn(provider.id, {
-                callbackUrl: "http://localhost:3000/auth/createNickname",
-              })
-            }
-          >
-            Log in with {provider.name}
-          </Button>
-        ))}
+        <Test>
+          {Object.values(providers).map((provider) => (
+            <Button
+              key={provider.name}
+              onClick={() =>
+                signIn(provider.id, {
+                  callbackUrl: "http://localhost:3000/auth/createNickname",
+                })
+              }
+            >
+              Log in with {provider.name}
+            </Button>
+          ))}
+        </Test>
       </Buttons>
     </Main>
   );
@@ -72,13 +74,26 @@ const Main = styled.main`
   }
 `;
 
+const Test = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  justify-content: center;
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 13px;
+  justify-content: center;
+`;
+
 const Button = styled.button`
   display: flex;
   justify-content: space-around;
   align-items: center;
   position: relative;
-  top: 632px;
-  left: 55px;
+  top: 432px;
   font-size: 22px;
   width: 277px;
   height: 41px;
@@ -91,9 +106,4 @@ const Button = styled.button`
     background-color: green;
     color: white;
   }
-`;
-const Buttons = styled.button`
-  display: flex;
-  flex-direction: column;
-  gap: 13px;
 `;
