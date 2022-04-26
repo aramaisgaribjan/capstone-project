@@ -18,7 +18,9 @@ export default function Meeting() {
         {fishingdays.data ? (
           <FishingdayList>
             {fishingdays.data
-              .filter((fishingday) => fishingday.userId._id === session.user.id)
+              .filter(
+                (fishingday) => fishingday.userId?._id === session.user?.id
+              )
               .map((fishingday) => (
                 <li key={fishingday._id}>
                   <Fishingday fishingday={fishingday} />
@@ -26,8 +28,8 @@ export default function Meeting() {
               ))}
             {fishingdays.data
               .filter((fishingday) =>
-                fishingday.participants.some(
-                  (participant) => participant._id === session.user.id
+                fishingday.participants?.some(
+                  (participant) => participant._id === session.user?.id
                 )
               )
               .map((fishingday) => (
