@@ -142,6 +142,7 @@ const AllInfo = styled.div`
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
+
   if (!session) {
     return {
       redirect: {
@@ -150,19 +151,10 @@ export async function getServerSideProps(context) {
       },
     };
   }
-  const results = await search();
-
-  const { resources, next_cursor: nextCursor } = results;
-
-  const images = mapImageResources(resources);
-
-  console.log(images);
 
   return {
     props: {
       session,
-      images,
-      nextCursor: nextCursor || false,
     },
   };
 }
