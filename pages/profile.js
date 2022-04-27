@@ -140,8 +140,8 @@ const AllInfo = styled.div`
   margin-top: 10px;
 `;
 
-export async function getStaticProps() {
-  const session = await getSession();
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
   if (!session) {
     return {
       redirect: {
