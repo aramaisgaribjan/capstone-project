@@ -55,7 +55,6 @@ const ImageContainer = styled.div`
 // This is the recommended way for Next.js 9.3 or newer
 export async function getServerSideProps(context) {
   const providers = await getProviders();
-  const session = await getSession();
   return {
     props: { providers },
   };
