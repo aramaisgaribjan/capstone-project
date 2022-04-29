@@ -23,7 +23,7 @@ export default function EditAboutMeForm({
       <H3>ÜBER MICH</H3>
       <HR />
       <div>
-        <input
+        <textarea
           type="text"
           id={`aboutMeText-${id}`}
           name="aboutMeText"
@@ -79,7 +79,7 @@ const Form = styled.form`
     border: 2px solid rgb(190 190 190);
     border-radius: 3px;
   }
-  input[type="text"] {
+  textarea[type="text"] {
     width: 335px;
     height: 100px;
     padding: 0.5rem;
@@ -88,6 +88,7 @@ const Form = styled.form`
     background-color: #363535;
     color: white;
     font-size: 17px;
+    font-family: "Lato", sans-serif;
   }
 `;
 
