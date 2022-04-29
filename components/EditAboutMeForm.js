@@ -44,20 +44,21 @@ export default function EditAboutMeForm({
 }
 
 const HR = styled.hr`
-  width: 350px;
-  margin-top: 0;
+  width: 335px;
+  margin: 0;
 `;
 
 const H3 = styled.h3`
-  margin: 10px 0 10px 10px;
+  margin: 15px 0px 0px 0px;
 `;
 
 const Form = styled.form`
   height: 100%;
   display: flex;
   gap: 1rem;
-  width: 300px;
+  width: 335px;
   flex-wrap: wrap;
+  margin: auto;
 
   > div {
     display: flex;
@@ -79,11 +80,14 @@ const Form = styled.form`
     border-radius: 3px;
   }
   input[type="text"] {
-    width: 350px;
+    width: 335px;
     height: 100px;
     padding: 0.5rem;
     border: 2px solid rgb(190 190 190);
     border-radius: 3px;
+    background-color: #363535;
+    color: white;
+    font-size: 17px;
   }
 `;
 
