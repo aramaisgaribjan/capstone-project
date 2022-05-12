@@ -153,15 +153,10 @@ export async function getServerSideProps(context) {
   }
   const results = await search();
 
-  const { resources, next_cursor: nextCursor } = results;
-
-  const images = mapImageResources(resources);
-
   return {
     props: {
       session,
-      images,
-      nextCursor: nextCursor || false,
+     
     },
   };
 }
